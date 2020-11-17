@@ -45,7 +45,8 @@ def root():
 @app.route('/nlp')
 def nlpurl():
     with open('static/pass.txt') as p:
-        apikey = p.read().strip()
+        apikey = p.read().strip().split('\n')[0]
+        baseurl = p.read().strip().split('\n')[-1]
     if 'url' in request.args:
         url = request.args['url']
         data = {"url": url,"features": {"sentiment": {},"categories": {},"concepts": {},"entities": {},"keywords": {}}}
@@ -53,7 +54,7 @@ def nlpurl():
         text = request.args['text']
         data = {"text": text,"features": {"sentiment": {},"categories": {},"concepts": {},"entities": {},"keywords": {}}}
     headers = {'Content-Type': 'application/json',}
-    res = requests.post('https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/4586da57-0316-4d69-b120-8fdfb17acf5a/v1/analyze?version=2019-07-12', headers=headers, json=data, auth=('apikey', apikey))
+    res = requests.post(f'{baseurl}/v1/analyze?version=2019-07-12', headers=headers, json=data, auth=('apikey', apikey))
     out  = res.json()
     return out
 

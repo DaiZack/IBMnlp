@@ -1,0 +1,2 @@
+WAaWE_YATKq0MMh78ddLHkIRf8u1XsnauJ55ylS2lRyk
+https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/2eb53edb-2f7f-45a1-98ec-41961da05b82
